@@ -1,9 +1,5 @@
 import { DenoDB } from "../../deps.ts";
-import {
-  assertArrayIncludes,
-  assertEquals,
-  assertObjectMatch,
-} from "../../dev_deps.ts";
+import { assertArrayIncludes, assertObjectMatch } from "../../dev_deps.ts";
 import { getMetadataStorage } from "../../mod.ts";
 
 Deno.test("Column decorator", async () => {
