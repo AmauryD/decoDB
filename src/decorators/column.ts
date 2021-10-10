@@ -15,7 +15,7 @@ export function PrimaryColumn(
       }
       : options;
 
-    getMetadataStorage()._columns.push({
+    getMetadataStorage().columns.push({
       target,
       property,
       options: { ...options, primaryKey: true },
@@ -29,7 +29,7 @@ export function BelongsTo<T extends typeof DenoDB.Model>(
   options?: RelationshipOptions,
 ) {
   return function (target: typeof DenoDB.Model, property: string) {
-    getMetadataStorage()._relations.push({
+    getMetadataStorage().relations.push({
       target,
       relationTarget,
       property,
@@ -46,7 +46,7 @@ export function ManyToMany<T extends typeof DenoDB.Model>(
   options?: RelationshipOptions,
 ) {
   return function (target: typeof DenoDB.Model, property: string) {
-    getMetadataStorage()._relations.push({
+    getMetadataStorage().relations.push({
       target,
       relationTarget,
       property,
@@ -63,7 +63,7 @@ export function OneToOne<T extends typeof DenoDB.Model>(
   options?: RelationshipOptions,
 ) {
   return function (target: typeof DenoDB.Model, property: string) {
-    getMetadataStorage()._relations.push({
+    getMetadataStorage().relations.push({
       target,
       relationTarget,
       property,
@@ -84,7 +84,7 @@ export default function Column(
       }
       : options;
 
-    getMetadataStorage()._columns.push({
+    getMetadataStorage().columns.push({
       target,
       property,
       options,

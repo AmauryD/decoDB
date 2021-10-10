@@ -48,9 +48,9 @@ export interface RelationsMetadata {
 export class MetadataStorage {
   public static instance: MetadataStorage;
 
-  public _entities: EntitiesMetadata[] = [];
-  public _columns: ColumnsMetadata[] = [];
-  public _relations: RelationsMetadata[] = [];
+  public entities: EntitiesMetadata[] = [];
+  public columns: ColumnsMetadata[] = [];
+  public relations: RelationsMetadata[] = [];
 }
 
 export function getMetadataStorage() {

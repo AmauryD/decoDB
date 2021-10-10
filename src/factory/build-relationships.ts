@@ -7,7 +7,7 @@ export function buildRelationships(
   const metadata = getMetadataStorage();
 
   for (const entityModel of entities) {
-    const entityMeta = metadata._entities.find((e) => e.target === entityModel);
+    const entityMeta = metadata.entities.find((e) => e.target === entityModel);
 
     if (!entityMeta) {
       throw new Error(
@@ -15,7 +15,7 @@ export function buildRelationships(
       );
     }
 
-    const relationships = metadata._relations.filter((e) =>
+    const relationships = metadata.relations.filter((e) =>
       e.target === entityModel
     ) ?? [];
 

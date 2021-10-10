@@ -7,7 +7,7 @@ export function buildEntities(
   const metadata = getMetadataStorage();
 
   for (const entityModel of entities) {
-    const entityMeta = metadata._entities.find((e) => e.target === entityModel);
+    const entityMeta = metadata.entities.find((e) => e.target === entityModel);
 
     if (!entityMeta) {
       throw new Error(
@@ -15,7 +15,7 @@ export function buildEntities(
       );
     }
 
-    const columns = metadata._columns.filter((e) =>
+    const columns = metadata.columns.filter((e) =>
       e.target.constructor === entityModel
     );
 

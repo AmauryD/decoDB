@@ -13,7 +13,7 @@ export default function Entity(options: string | EntityOptions) {
   ): void {
     options = typeof options === "string" ? { name: options } : options;
 
-    getMetadataStorage()._entities.push({
+    getMetadataStorage().entities.push({
       target,
       options,
     });
