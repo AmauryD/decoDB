@@ -61,7 +61,7 @@ export function buildRelationships(
         }
         if (!Object.hasOwn(entityModel, property)) {
           Object.defineProperty(entityModel, property, {
-            value: inverseRelFunction,
+            value: relFunction,
           });
         }
       }
