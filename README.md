@@ -13,19 +13,11 @@ TODO
 - [ ] Tests
 - [ ] Documentation
 
-### Creating models
+### Quick start
 
 ```ts
-import { DenoDB } from "../../deps.ts";
-import { Column, Entity, PrimaryColumn } from "../../mod.ts";
-import { Comment } from "./comments.ts";
-
-@Entity({
-  name: "articles",
-  timestamps: true,
-})
+@Entity("articles")
 export class Article extends DenoDB.Model {
-  // ...
   @PrimaryColumn({ type: DenoDB.DataTypes.INTEGER, autoIncrement: true })
   declare public id: number;
 
@@ -42,13 +34,7 @@ export class Article extends DenoDB.Model {
 ```
 
 ```ts
-import { DenoDB } from "../../deps.ts";
-import { BelongsTo, Column, Entity, PrimaryColumn } from "../../mod.ts";
-import { Article } from "./article.ts";
-
-@Entity({
-  name: "comments",
-})
+@Entity("comments")
 export class Comment extends DenoDB.Model {
   @PrimaryColumn(DenoDB.DataTypes.INTEGER)
   declare public id: number;
@@ -66,15 +52,15 @@ export class Comment extends DenoDB.Model {
 ### Creating connection
 
 ```ts
-const connector = new DenoDB.MySQLConnector({
-  database: "nfw",
-  host: "localhost",
-  username: "root",
-  password: "test123*",
-  port: 3306, // optional
-});
+(async() => {
+  const connector = new DenoDB.MySQLConnector({
+    ...
+  });
+  const db = new DenoDB.Database(connector);
 
-const db = await CreateConnection(connector, {
-  models: [Article, Comment],
-});
+  await setupDatabase(db, {
+    models: [Article, Comment, User],
+  });
+  ...
+})();
 ```
