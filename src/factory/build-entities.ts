@@ -23,13 +23,12 @@ export function buildEntities(
     const defaults: Record<string, unknown> = {};
 
     for (const { property, options } of columns) {
-      fields[property] = {
-        type: options.type,
-        length: options.length,
-        primaryKey: options.primaryKey,
-      };
+      const defaultColumnValue = options.default;
+      // delete default, not assignable to fields
+      delete options.default;
+      fields[property] = options;
       if (options.default) {
-        defaults[property] = options.default;
+        defaults[property] = defaultColumnValue;
       }
     }
 

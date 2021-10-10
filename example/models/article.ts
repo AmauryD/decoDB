@@ -8,12 +8,14 @@ import { Comment } from "./comments.ts";
 })
 export class Article extends DenoDB.Model {
   // ...
-  @PrimaryColumn(DenoDB.DataTypes.INTEGER)
+  @PrimaryColumn({ type: DenoDB.DataTypes.INTEGER, autoIncrement: true })
   declare public id: number;
 
   @Column({
     type: DenoDB.DataTypes.STRING,
     default: "bonjour",
+    allowNull: true,
+    unique: true,
   })
   declare public name: string;
 

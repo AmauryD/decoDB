@@ -13,6 +13,14 @@ export interface EntitiesMetadata {
 export interface ColumnOptions {
   type: string;
   default?: unknown;
+  as?: string;
+  unique?: boolean;
+  autoIncrement?: boolean;
+  allowNull?: boolean;
+  precision?: number;
+  scale?: number;
+  values?: unknown[];
+  comment?: string;
   primaryKey?: boolean;
   length?: number;
 }

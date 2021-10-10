@@ -16,9 +16,8 @@ import { Comment } from "./models/comments.ts";
     models: [Article, Comment],
   });
 
-  // await db.sync({ drop: false });
+  await db.sync({ drop: true });
 
   console.log(await Article.select().all());
   console.log(await Article.where("id", "1").comments());
-  console.log(await Comment.where("id", "1").article());
 })();

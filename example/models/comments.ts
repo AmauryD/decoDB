@@ -6,7 +6,6 @@ import { Article } from "./article.ts";
   name: "comments",
 })
 export class Comment extends DenoDB.Model {
-  // ...
   @PrimaryColumn(DenoDB.DataTypes.INTEGER)
   declare public id: number;
 
