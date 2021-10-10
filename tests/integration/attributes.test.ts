@@ -1,6 +1,6 @@
 import { DenoDB } from "../../deps.ts";
 import { assertEquals } from "../../dev_deps.ts";
-import { setupDatabase, getMetadataStorage } from "../../mod.ts";
+import { getMetadataStorage, setupDatabase } from "../../mod.ts";
 import { Article } from "../samples/articles.ts";
 
 Deno.test("Testing sample", async () => {

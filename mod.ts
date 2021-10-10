@@ -11,10 +11,10 @@ import { getMetadataStorage } from "./src/metadata/storage.ts";
 export {
   BelongsTo,
   Column,
-  setupDatabase,
   Entity,
   getMetadataStorage,
   ManyToMany,
   OneToOne,
   PrimaryColumn,
+  setupDatabase,
 };
