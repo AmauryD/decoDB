@@ -11,7 +11,6 @@ export async function CreateConnection(
   options: CreateOptions,
 ) {
   const db = new DenoDB.Database(connector);
-  console.log(db);
   buildEntities(options.models);
   await db.link(options.models);
   buildRelationships(options.models);
