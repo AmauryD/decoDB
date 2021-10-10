@@ -4,6 +4,15 @@
 
 ## Installing
 
+TODO
+
+## TODO before first release
+
+- [x] Attributes decorators
+- [x] Relationships decorators
+- [ ] Tests
+- [ ] Documentation
+
 ### Creating models
 
 ```ts
