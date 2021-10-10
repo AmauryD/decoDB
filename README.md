@@ -13,6 +13,10 @@ TODO
 - [ ] Tests
 - [ ] Documentation
 
+## Documentation
+
+See the [WIKI](https://github.com/AmauryD/decodb/wiki).
+
 ## Quick start
 
 ### Defining models
