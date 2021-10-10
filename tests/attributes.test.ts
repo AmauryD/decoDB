@@ -5,7 +5,7 @@ import { Article } from "./samples/articles.ts";
 
 Deno.test("Testing sample", async () => {
   const connector = new DenoDB.SQLite3Connector({
-    filepath: "./database.sqlite",
+    filepath: ":memory:",
   });
 
   const db = await CreateConnection(connector, {
