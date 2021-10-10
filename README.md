@@ -13,19 +13,17 @@ TODO
 - [ ] Tests
 - [ ] Documentation
 
-### Creating models
+## Documentation
+
+See the [WIKI](https://github.com/AmauryD/decodb/wiki).
+
+## Quick start
+
+### Defining models
 
 ```ts
-import { DenoDB } from "../../deps.ts";
-import { Column, Entity, PrimaryColumn } from "../../mod.ts";
-import { Comment } from "./comments.ts";
-
-@Entity({
-  name: "articles",
-  timestamps: true,
-})
+@Entity("articles")
 export class Article extends DenoDB.Model {
-  // ...
   @PrimaryColumn({ type: DenoDB.DataTypes.INTEGER, autoIncrement: true })
   declare public id: number;
 
@@ -42,13 +40,7 @@ export class Article extends DenoDB.Model {
 ```
 
 ```ts
-import { DenoDB } from "../../deps.ts";
-import { BelongsTo, Column, Entity, PrimaryColumn } from "../../mod.ts";
-import { Article } from "./article.ts";
-
-@Entity({
-  name: "comments",
-})
+@Entity("comments")
 export class Comment extends DenoDB.Model {
   @PrimaryColumn(DenoDB.DataTypes.INTEGER)
   declare public id: number;
@@ -66,22 +58,15 @@ export class Comment extends DenoDB.Model {
 ### Creating connection
 
 ```ts
-import { DenoDB } from "../deps.ts";
-import { setupDatabase } from "../mod.ts";
-import { Article } from "./models/article.ts";
-import { Comment } from "./models/comments.ts";
-
-(async () => {
-  const connector = new DenoDB.MySQLConnector(
-    // ...
-  );
+(async() => {
+  const connector = new DenoDB.MySQLConnector({
+    ...
+  });
   const db = new DenoDB.Database(connector);
 
   await setupDatabase(db, {
-    models: [Article, Comment],
+    models: [Article, Comment, User],
   });
-
-  // sync DB
-  await db.sync({ drop: true });
+  ...
 })();
 ```
