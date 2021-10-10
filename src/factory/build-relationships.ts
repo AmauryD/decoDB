@@ -24,8 +24,16 @@ export function buildRelationships(
         of relationships
     ) {
       const relTarget = relationTarget();
-      let relFunction: Function | undefined;
-      let inverseRelFunction: Function | undefined;
+      let relFunction:
+        | ((
+          this: typeof entityModel,
+        ) => Promise<unknown>)
+        | undefined;
+      let inverseRelFunction:
+        | ((
+          this: typeof relTarget,
+        ) => Promise<unknown>)
+        | undefined;
 
       if (type === "belongs-to") {
         DenoDB.Relationships.belongsTo(entityModel, relTarget, options);
