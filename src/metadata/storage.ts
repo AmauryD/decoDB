@@ -31,9 +31,15 @@ export interface ColumnsMetadata {
   options: ColumnOptions;
 }
 
+export interface RelationshipOptions {
+  primaryKey?: string;
+  foreignKey?: string;
+}
+
 export interface RelationsMetadata {
   target: typeof DenoDB.Model;
   property: string;
+  options?: RelationshipOptions;
   inverseKey: string;
   type: "many-to-many" | "belongs-to" | "one-to-one";
   relationTarget: () => typeof DenoDB.Model;

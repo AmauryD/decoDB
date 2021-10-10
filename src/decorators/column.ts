@@ -1,5 +1,9 @@
 import { DenoDB } from "../../deps.ts";
-import { ColumnOptions, getMetadataStorage } from "../metadata/storage.ts";
+import {
+  ColumnOptions,
+  getMetadataStorage,
+  RelationshipOptions,
+} from "../metadata/storage.ts";
 
 export function PrimaryColumn(
   options: string | ColumnOptions,
@@ -19,46 +23,52 @@ export function PrimaryColumn(
   };
 }
 
-export function BelongsTo(
-  relationTarget: () => any,
-  inverseKey: any,
+export function BelongsTo<T extends typeof DenoDB.Model>(
+  relationTarget: () => T,
+  inverseKey: keyof T,
+  options?: RelationshipOptions,
 ) {
   return function (target: typeof DenoDB.Model, property: string) {
     getMetadataStorage()._relations.push({
       target,
       relationTarget,
       property,
-      inverseKey,
+      inverseKey: inverseKey as string,
+      options,
       type: "belongs-to",
     });
   };
 }
 
-export function ManyToMany(
-  relationTarget: () => any,
-  inverseKey: any,
+export function ManyToMany<T extends typeof DenoDB.Model>(
+  relationTarget: () => T,
+  inverseKey: keyof T,
+  options?: RelationshipOptions,
 ) {
   return function (target: typeof DenoDB.Model, property: string) {
     getMetadataStorage()._relations.push({
       target,
       relationTarget,
       property,
-      inverseKey,
+      options,
+      inverseKey: inverseKey as string,
       type: "many-to-many",
     });
   };
 }
 
-export function OneToOne(
-  relationTarget: () => any,
-  inverseKey: any,
+export function OneToOne<T extends typeof DenoDB.Model>(
+  relationTarget: () => T,
+  inverseKey: keyof T,
+  options?: RelationshipOptions,
 ) {
   return function (target: typeof DenoDB.Model, property: string) {
     getMetadataStorage()._relations.push({
       target,
       relationTarget,
       property,
-      inverseKey,
+      options,
+      inverseKey: inverseKey as string,
       type: "one-to-one",
     });
   };

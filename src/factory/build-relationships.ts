@@ -20,7 +20,7 @@ export function buildRelationships(
     ) ?? [];
 
     for (
-      const { type, relationTarget, property, target, inverseKey }
+      const { type, relationTarget, property, inverseKey, options }
         of relationships
     ) {
       const relTarget = relationTarget();
@@ -28,7 +28,7 @@ export function buildRelationships(
       let inverseRelFunction: Function | undefined;
 
       if (type === "belongs-to") {
-        DenoDB.Relationships.belongsTo(entityModel, relTarget);
+        DenoDB.Relationships.belongsTo(entityModel, relTarget, options);
         relFunction = function (this: typeof entityModel) {
           return this.hasOne(relTarget);
         };
@@ -36,7 +36,7 @@ export function buildRelationships(
           return this.hasMany(entityModel);
         };
       } else if (type === "many-to-many") {
-        DenoDB.Relationships.manyToMany(entityModel, relTarget);
+        DenoDB.Relationships.manyToMany(entityModel, relTarget, options);
         relFunction = function (this: typeof entityModel) {
           return this.hasMany(relTarget);
         };
@@ -44,7 +44,7 @@ export function buildRelationships(
           return this.hasMany(entityModel);
         };
       } else if (type === "one-to-one") {
-        DenoDB.Relationships.oneToOne(entityModel, relTarget);
+        DenoDB.Relationships.oneToOne(entityModel, relTarget, options);
         relFunction = function (this: typeof entityModel) {
           return this.hasOne(relTarget);
         };
