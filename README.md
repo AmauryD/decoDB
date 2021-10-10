@@ -13,7 +13,9 @@ TODO
 - [ ] Tests
 - [ ] Documentation
 
-### Quick start
+## Quick start
+
+### Defining models
 
 ```ts
 @Entity("articles")
