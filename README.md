@@ -1,4 +1,4 @@
-# DecoDB
+# DecoDB [![Lint](https://github.com/AmauryD/decoDB/actions/workflows/lint.yml/badge.svg)](https://github.com/AmauryD/decoDB/actions/workflows/lint.yml) [![Tests](https://github.com/AmauryD/decoDB/actions/workflows/tests.yml/badge.svg)](https://github.com/AmauryD/decoDB/actions/workflows/tests.yml)
 
 [DenoDB](https://github.com/eveningkid/denodb) with decorators.
 
