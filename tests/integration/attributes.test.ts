@@ -1,16 +1,18 @@
 import { DenoDB } from "../../deps.ts";
 import { assertEquals } from "../../dev_deps.ts";
-import { CreateConnection, getMetadataStorage } from "../../mod.ts";
+import { setupDatabase, getMetadataStorage } from "../../mod.ts";
 import { Article } from "../samples/articles.ts";
 
 Deno.test("Testing sample", async () => {
   const connector = new DenoDB.SQLite3Connector({
     filepath: ":memory:",
   });
+  const db = new DenoDB.Database(connector);
 
-  const db = await CreateConnection(connector, {
+  await setupDatabase(db, {
     models: [Article],
   });
+
   await connector.close();
   await db.close();
 

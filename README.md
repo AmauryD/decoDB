@@ -66,15 +66,22 @@ export class Comment extends DenoDB.Model {
 ### Creating connection
 
 ```ts
-const connector = new DenoDB.MySQLConnector({
-  database: "nfw",
-  host: "localhost",
-  username: "root",
-  password: "test123*",
-  port: 3306, // optional
-});
+import { DenoDB } from "../deps.ts";
+import { setupDatabase } from "../mod.ts";
+import { Article } from "./models/article.ts";
+import { Comment } from "./models/comments.ts";
 
-const db = await CreateConnection(connector, {
-  models: [Article, Comment],
-});
+(async () => {
+  const connector = new DenoDB.MySQLConnector(
+    // ...
+  );
+  const db = new DenoDB.Database(connector);
+
+  await setupDatabase(db, {
+    models: [Article, Comment],
+  });
+
+  // sync DB
+  await db.sync({ drop: true });
+})();
 ```

@@ -1,5 +1,5 @@
 import { DenoDB } from "../deps.ts";
-import { CreateConnection } from "../mod.ts";
+import { setupDatabase } from "../mod.ts";
 import { Article } from "./models/article.ts";
 import { Comment } from "./models/comments.ts";
 
@@ -11,8 +11,9 @@ import { Comment } from "./models/comments.ts";
     password: "test123*",
     port: 3306, // optional
   });
+  const db = new DenoDB.Database(connector);
 
-  const db = await CreateConnection(connector, {
+  await setupDatabase(db, {
     models: [Article, Comment],
   });
 

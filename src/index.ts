@@ -6,11 +6,10 @@ interface CreateOptions {
   models: (typeof DenoDB.Model)[];
 }
 
-export async function CreateConnection(
-  connector: DenoDB.Connector,
+export async function setupDatabase(
+  db: DenoDB.Database,
   options: CreateOptions,
 ) {
-  const db = new DenoDB.Database(connector);
   buildEntities(options.models);
   await db.link(options.models);
   buildRelationships(options.models);

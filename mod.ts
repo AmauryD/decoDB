@@ -5,13 +5,13 @@ import Column, {
   OneToOne,
   PrimaryColumn,
 } from "./src/decorators/column.ts";
-import { CreateConnection } from "./src/index.ts";
+import { setupDatabase } from "./src/index.ts";
 import { getMetadataStorage } from "./src/metadata/storage.ts";
 
 export {
   BelongsTo,
   Column,
-  CreateConnection,
+  setupDatabase,
   Entity,
   getMetadataStorage,
   ManyToMany,
