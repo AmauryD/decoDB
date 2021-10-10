@@ -1,10 +1,21 @@
 import { DenoDB } from "../../deps.ts";
-import { Column, Entity } from "../../mod.ts";
+import { Column, Entity, PrimaryColumn } from "../../mod.ts";
+import { Comment } from "./comments.ts";
 
-@Entity("article")
+@Entity({
+  name: "articles",
+  timestamps: true,
+})
 export class Article extends DenoDB.Model {
   // ...
+  @PrimaryColumn(DenoDB.DataTypes.INTEGER)
+  declare public id: number;
 
-  @Column(DenoDB.DataTypes.STRING)
+  @Column({
+    type: DenoDB.DataTypes.STRING,
+    default: "bonjour",
+  })
   declare public name: string;
+
+  declare public static comments: () => Promise<Comment[]>;
 }

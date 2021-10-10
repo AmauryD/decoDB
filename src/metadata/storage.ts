@@ -1,19 +1,33 @@
 import { DenoDB } from "../../deps.ts";
 
+export interface EntityOptions {
+  name: string;
+  timestamps?: boolean;
+}
+
 export interface EntitiesMetadata {
   target: typeof DenoDB.Model;
-  name: string;
+  options: EntityOptions;
+}
+
+export interface ColumnOptions {
+  type: string;
+  default?: unknown;
+  primaryKey?: boolean;
+  length?: number;
 }
 
 export interface ColumnsMetadata {
   target: DenoDB.Model;
   property: string;
-  dataType: string;
+  options: ColumnOptions;
 }
 
 export interface RelationsMetadata {
   target: typeof DenoDB.Model;
   property: string;
+  inverseKey: string;
+  type: "many-to-many" | "belongs-to" | "one-to-one";
   relationTarget: () => typeof DenoDB.Model;
 }
 

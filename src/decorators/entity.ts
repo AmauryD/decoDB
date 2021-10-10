@@ -1,20 +1,21 @@
 import { DenoDB } from "../../deps.ts";
 import { getMetadataStorage } from "../../mod.ts";
-
-type Constructor<K> = { new (): K };
+import { EntityOptions } from "../metadata/storage.ts";
 
 /**
  * Comment
  *
  * @returns {ClassDecorator}
  */
-export default function Entity(name: string) {
+export default function Entity(options: string | EntityOptions) {
   return function (
     target: typeof DenoDB.Model,
   ): void {
+    options = typeof options === "string" ? { name: options } : options;
+
     getMetadataStorage()._entities.push({
       target,
-      name,
+      options,
     });
   };
 }
