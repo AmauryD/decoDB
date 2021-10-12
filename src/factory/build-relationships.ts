@@ -1,5 +1,6 @@
 import { DenoDB } from "../../deps.ts";
 import { getMetadataStorage } from "../../mod.ts";
+import { ModelRegistry } from "../registry/registry.ts";
 
 export function buildRelationships(
   entities: (typeof DenoDB.Model)[],
@@ -44,7 +45,12 @@ export function buildRelationships(
           return this.hasMany(entityModel);
         };
       } else if (type === "many-to-many") {
-        DenoDB.Relationships.manyToMany(entityModel, relTarget, options);
+        const pivot = DenoDB.Relationships.manyToMany(
+          entityModel,
+          relTarget,
+          options,
+        );
+        ModelRegistry.instance.addPivot(entityModel, relTarget, pivot);
         relFunction = function (this: typeof entityModel) {
           return this.hasMany(relTarget);
         };
