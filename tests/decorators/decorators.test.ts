@@ -9,12 +9,12 @@ import { getMetadataStorage } from "../../mod.ts";
 Deno.test("Test decorators and metadata storage", async () => {
   // simulate loading Models
   const { Article } = await import("../samples/articles.ts");
-  // deno-lint-ignore no-unused-vars
-  const { User } = await import("../samples/user.ts");
+  await import("../samples/user.ts");
+  await import("../samples/category.ts");
 
   const metadatastore = getMetadataStorage();
 
-  assertEquals(metadatastore.entities.length, 2);
+  assertEquals(metadatastore.entities.length, 3);
 
   assertArrayIncludes(metadatastore.columns.map((e) => e.property), [
     "name",

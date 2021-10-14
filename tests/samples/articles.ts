@@ -1,5 +1,6 @@
 import { DenoDB } from "../../deps.ts";
 import { BelongsTo, Column, Entity, PrimaryColumn } from "../../mod.ts";
+import { Category } from "./category.ts";
 import { User } from "./user.ts";
 
 @Entity({
@@ -20,6 +21,8 @@ export class Article extends DenoDB.Model {
   declare public name: string;
 
   declare public userId: number;
+
+  declare public static categories: () => Promise<Category>[];
 
   @BelongsTo(() => User, "articles")
   declare public static author: () => Promise<User>;

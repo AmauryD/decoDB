@@ -9,5 +9,5 @@ export class User extends DenoDB.Model {
   @PrimaryColumn({ type: DenoDB.DataTypes.INTEGER, autoIncrement: true })
   declare public id: number;
 
-  declare public static articles: () => Promise<Article>[];
+  declare public static articles: () => Promise<Article[]>;
 }
